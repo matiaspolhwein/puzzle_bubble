@@ -59,6 +59,7 @@
     <Compile Include="Assets\asets personales\scripts\cañon\cañon.cs" />
     <Compile Include="Assets\asets personales\scripts\projectil\pro_PC_color.cs" />
     <Compile Include="Assets\asets personales\scripts\projectil\pro_movimiento.cs" />
+    <Compile Include="Assets\asets personales\scripts\cañon\Cañon_atributos.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
