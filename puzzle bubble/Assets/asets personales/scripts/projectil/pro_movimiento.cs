@@ -5,23 +5,23 @@ using UnityEngine;
 public class pro_movimiento : MonoBehaviour
 {
 
-    float x = 0.036f;
-    float y = 0.02f;
+    float x = 130f;
+    float y = 200f;
     float r;
+    
+    GameObject proyectil;
+    Vector2 positivo;
+    Vector2 negativo;
+    Vector2 neutro;
 
-    Vector2 sipar;
-    Vector2 nopar;
-    float x_par;
-    float y_par;
- 
-    int vel = 5;
+    int vel = 75;
     Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-            
+        proyectil = GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -29,18 +29,37 @@ public class pro_movimiento : MonoBehaviour
     {
         r = Cañon_atributos.rotacion;
 
-      
-        x_par = r/2;
-        y_par = r/2;
 
-        sipar = new Vector2(x_par, y_par);
-        nopar = new Vector2(sipar.x / 2 + sipar.x, sipar.y / 2 + sipar.y);
 
-        rb2d.MovePosition(sipar*vel*Time.deltaTime);
-        Debug.Log(x_par);
-
-      //  rb2d.position = rb2d.position + nopar * vel * Time.deltaTime;
-        {
+        positivo = new Vector2(x, y);
+        negativo = new Vector2(-x, y);
+        neutro = new Vector2(0,y);
+        if (r>0) {
+            rb2d.AddForce(positivo * Time.deltaTime);
         }
+        else if (r<0){
+            rb2d.AddForce(negativo *Time.deltaTime);
+        }
+        else if (r == 0) {
+            rb2d.AddForce(neutro * Time.deltaTime);
+        }
+        if (rb2d.position.y > 5)
+        {
+            Object.Destroy(gameObject);
+        }
+        else if (rb2d.position.y < -5)
+        {
+            Object.Destroy(gameObject);
+        }
+        else if (rb2d.position.x > 3)
+        {
+            Object.Destroy(gameObject);
+        }
+        else if (rb2d.position.x < -3) {
+            Object.Destroy(gameObject);
+        }
+        }
+    
     }
-}
+    
+
